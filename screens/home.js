@@ -2,13 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import { Carrot1, Location, Search } from "../assets/svg/icons";
-
-// const itemBox = [
-//     {
-//         icon: require("../assets/pictures/banana.png"),
-
-//     }
-// ]
+import { ItemBox, ItemCont } from "../components/item";
 
 export default function Home() {
   return (
@@ -46,12 +40,17 @@ export default function Home() {
         <Text style={styles.seeAll}>See all</Text>
       </View>
       <View style={styles.itemContainer}>
-        <View style={styles.itemBox}>
-          <Image
-            source={require("../assets/pictures/banana.png")}
-            style={styles.banana}
-          />
-        </View>
+        {ItemCont.map((item, index) => {
+          return (
+            <ItemBox
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              qty={item.qty}
+              price={item.price}
+            />
+          );
+        })}
       </View>
     </View>
   );
@@ -65,19 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: "center",
   },
-  itemBox: {
-    borderColor: "#E2E2E2",
-    borderRadius: 15,
-    borderWidth: 1.2,
-    width: 150,
-    height: 230,
-  },
-  banana: {
-    width: 90,
-    height: 75,
-    alignSelf: "center",
-    marginTop: 10,
-  },
+
   seeAll: {
     color: "green",
   },
